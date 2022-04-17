@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <!-- <script src="client.js"></script> -->
+    <style>
+        .container{
+            border: 3px solid black;
+            width: 50vw;
+            height: 60vh;
+            display: flex;
+            margin-left: 25vw;
+            margin-top: 10vh;
+            justify-content: center;
+        }
+        .container2{
+            margin-top: 10vh;
+            width: 35vw;
+            height: 35vh;
+            border: 3px solid red;
+        }
+
+        .controls{
+            display: flex;
+            justify-content: center;
+            margin-top: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Chat App</h1>
+    <div class="container">
+
+        <div class="container2">
+            <p id="text"></p>
+        </div>
+       
+    </div>
+    <div class="controls">
+   Send Message: &nbsp; <input type="text" id="message"> &nbsp <input type="button" value="Send" id="send">
+</div>
+</body>
+<script type="module">
+    import {io} from 'socket.io-client';
+const socket=io('http://localhost:3000');
+
+
+// let send=document.getElementById('send');
+// let message=document.getElementById('message');
+// let container2=document.getElementsByClassName('container2');
+// let textdisplay=document.getElementById('text');
+
+// fucntion which will append the message to the container
+// function displaymessage(text){
+//     // container2.innerHTML.append(message);
+//     textdisplay.innerHTML+=text;
+// }
+
+// adding event listener
+// send.addEventListener('click', ()=>{
+//     displaymessage(message.value);
+//     message.value='';
+// })
+
+
+
+
+socket.on('connect', ()=>{
+    console.log("you connected with the server");
+    socket.emit('custom-event',10, 'string');
+})
+
+</script>
+</html>
